@@ -8,8 +8,7 @@ This parser has two functions, `crawlable/2` and `crawlable?/2`
 `crawlable/2` usage example:
 
 ```elixir
-iex>  Roboxir.crawlable("some_random_agent", "https://google.com/")
-
+iex> Roboxir.crawlable("some_random_agent", "https://google.com/")
 %Roboxir.UserAgent{
   allowed_urls: ["/js/", "/finance", "/maps/reserve/partners", "/maps/reserve",
    "/searchhistory/", "/alerts/$", "/alerts/remove", "/alerts/manage",
@@ -25,8 +24,7 @@ iex>  Roboxir.crawlable("some_random_agent", "https://google.com/")
 `crawlable?/2` usage example:
 
 ```elixir
-iex>  Roboxir.crawlable?("google", "https://google.com/")
-
+iex> Roboxir.crawlable?("google", "https://google.com/")
 true
 ```
 
