@@ -72,7 +72,7 @@ defmodule Roboxir do
 
   defp _crawlable(user_agent) do
     agents = Store.get()
-    user_agent = Map.get(agents, user_agent)
+    user_agent = Map.get(agents, user_agent, %UserAgent{name: user_agent})
     all_agent = Map.get(agents, "*", %UserAgent{})
 
     %UserAgent{

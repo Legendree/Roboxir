@@ -5,12 +5,18 @@ This parser has two functions, `crawlable/2` and `crawlable?/2`
 
 ## Usage
 
+`crawlable/2` usage example:
+
+```elixir
+
+```
+
 ## TODOs
 
 - [ ] Module docs
 - [ ] Typespecs
 - [ ] Tests
-- [ ] Give the ability to configure via `Config`
+- [ ] Ability to configure via `Config`
 
 ## Installation
 
