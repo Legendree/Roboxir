@@ -12,6 +12,7 @@ defmodule Roboxir do
   end
 
   defp parse_data(url) do
+    Store.flush()
     url = url <> "/robots.txt"
     {:ok, {_status, _headers, body}} = :httpc.request(url)
     {:ok, active_agent} = Agent.start_link(fn -> nil end)

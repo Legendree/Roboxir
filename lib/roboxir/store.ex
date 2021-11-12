@@ -27,6 +27,8 @@ defmodule Roboxir.Store do
     GenServer.cast(@process, {:add_sitemap_path_to_agent, agent_name, path})
   end
 
+  def flush(), do: GenServer.cast(@process, :flush)
+
   def get(), do: GenServer.call(@process, :get)
 
   def init(initial_state) do
@@ -63,5 +65,9 @@ defmodule Roboxir.Store do
     agent = Map.get(current_state, agent_name)
     updated_agent = %{agent | sitemap_urls: [path | agent.allowed_urls]}
     {:noreply, Map.put(current_state, agent_name, updated_agent)}
+  end
+
+  def handle_cast(:flush, _current_state) do
+    {:noreply, %{}}
   end
 end
