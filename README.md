@@ -24,7 +24,7 @@ iex> Roboxir.crawlable("some_random_agent", "https://google.com/")
 `crawlable?/2` usage example:
 
 ```elixir
-iex> Roboxir.crawlable?("google", "https://google.com/")
+iex> Roboxir.crawlable?("other_randome_agent", "https://google.com/")
 true
 ```
 
