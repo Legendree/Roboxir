@@ -75,6 +75,8 @@ defmodule Roboxir do
     user_agent = Map.get(agents, user_agent, %UserAgent{name: user_agent})
     all_agent = Map.get(agents, "*", %UserAgent{})
 
+    IO.inspect(all_agent)
+
     %UserAgent{
       name: user_agent.name,
       disallowed_urls: user_agent.disallowed_urls ++ all_agent.disallowed_urls,
