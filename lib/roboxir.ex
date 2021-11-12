@@ -65,14 +65,9 @@ defmodule Roboxir do
     do: Agent.update(:global.whereis_name(:current_agent), fn _ -> agent_name end)
 
   defp _crawlable?(user_agent) do
-    agents = Store.get()
-
-    case agents
-         |> Map.values()
-         |> Enum.any?(fn agent -> Map.get(agent, :name) == user_agent end) do
-      true -> :uncrawlable
-      false -> :crawlable
-    end
+    !(Store.get()
+      |> Map.values()
+      |> Enum.any?(fn agent -> Map.get(agent, :name) == user_agent end))
   end
 
   defp _crawlable(user_agent) do
@@ -80,7 +75,11 @@ defmodule Roboxir do
     user_agent = Map.get(agents, user_agent)
     all_agent = Map.get(agents, "*", %UserAgent{})
 
-    {user_agent.allowed_urls ++ all_agent.allowed_urls,
-     user_agent.disallowed_urls ++ all_agent.disallowed_urls}
+    %UserAgent{
+      name: user_agent.name,
+      disallowed_urls: user_agent.disallowed_urls ++ all_agent.disallowed_urls,
+      allowed_urls: user_agent.allowed_urls ++ all_agent.allowed_urls,
+      delay: user_agent.delay || all_agent.delay || 0
+    }
   end
 end
