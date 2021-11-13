@@ -30,8 +30,8 @@ true
 
 ## TODOs
 
-- [ ] Module docs
-- [ ] Typespecs
+- [x] Module docs
+- [x] Typespecs
 - [ ] Tests
 - [ ] Ability to configure via `Config`
 
