@@ -15,9 +15,9 @@ defmodule Roboxir do
       true
   """
   @spec crawlable?(String.t(), String.t()) :: boolean()
-  def crawlable?(user_agent, url) do
+  def crawlable?(agent_name, url) do
     Parser.parse_data(url)
-    _crawlable?(user_agent)
+    _crawlable?(agent_name)
   end
 
   @doc """
@@ -45,9 +45,14 @@ defmodule Roboxir do
        "/about/views/", ...]
   """
   @spec crawlable(String.t(), String.t()) :: UserAgent.t()
-  def crawlable(user_agent, url) do
+  def crawlable(agent_name, url) do
     Parser.parse_data(url)
-    _crawlable(user_agent)
+    _crawlable(agent_name)
+  end
+
+  def crawlable_page?(user_agent, url) do
+    !(user_agent.disallowed_urls
+      |> Enum.any?(fn current_url -> Regex.match?(~r/^.(\b#{url}\b)?.$/, current_url) end))
   end
 
   defp _crawlable?(user_agent) do
