@@ -4,7 +4,9 @@ defmodule Roboxir.Parser do
   def parse_data(url) do
     Store.flush()
     url = url <> "/robots.txt"
-    {:ok, {_status, _headers, body}} = :httpc.request(url)
+
+    {:ok, {_status, _headers, body}} = :httpc.request(:get, {url, []}, [], [])
+
     {:ok, active_agent} = Agent.start_link(fn -> nil end)
     :global.register_name(:current_agent, active_agent)
     IO.iodata_to_binary(body) |> String.split("\n") |> Enum.each(&match_line/1)
