@@ -13,7 +13,7 @@ defmodule StoreTest do
   end
 
   test "add_delay/1 adds delay to agent in store" do
-    delay = 25
+    delay = :math.floor(:rand.uniform() * 10 + 1)
     agent = %UserAgent{name: "test_agent"}
     Roboxir.Store.add_agent(agent)
     agents = Roboxir.Store.get()
