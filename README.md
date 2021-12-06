@@ -28,6 +28,9 @@ iex> Roboxir.crawlable?("other_randome_agent", "https://google.com/")
 true
 ```
 
+Using `crawlable/2` is recommended, with your own logic to itterate over disallowed_urls
+and decide what you can or can't parse. `crawlable?/2` is still being developed.
+
 ## TODOs
 
 - [x] Module docs

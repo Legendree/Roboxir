@@ -50,24 +50,6 @@ defmodule Roboxir do
     _crawlable(agent_name)
   end
 
-  def crawlable_page?(user_agent, page_url) do
-    !(user_agent.disallowed_urls
-      |> Enum.any?(fn url ->
-        split_url =
-          url
-          |> String.split("*")
-
-        case split_url do
-          [no_split] ->
-            no_split === page_url
-
-          _ ->
-            split_url
-            |> Enum.any?(fn part_url -> String.contains?(page_url, part_url) end)
-        end
-      end))
-  end
-
   defp _crawlable?(user_agent) do
     !(Store.get()
       |> Map.values()
