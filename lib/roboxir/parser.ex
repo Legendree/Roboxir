@@ -10,6 +10,7 @@ defmodule Roboxir.Parser do
     {:ok, active_agent} = Agent.start_link(fn -> nil end)
     :global.register_name(:current_agent, active_agent)
     IO.iodata_to_binary(body) |> String.split("\n") |> Enum.each(&match_line/1)
+    :ok
   end
 
   defp match_line("User-Agent: " <> name) do
