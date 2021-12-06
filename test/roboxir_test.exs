@@ -1,8 +1,9 @@
 defmodule RoboxirTest do
   use ExUnit.Case
-  doctest Roboxir
 
-  test "greets the world" do
-    assert Roboxir.hello() == :world
+  alias Roboxir.UserAgent
+
+  test "crawlable/2 returns UserAgent struct with parsed data" do
+    assert %UserAgent{} = Roboxir.crawlable("*", "https://google.com/")
   end
 end

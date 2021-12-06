@@ -30,19 +30,20 @@ defmodule Roboxir do
       %Roboxir.UserAgent{
         allowed_urls: ["/js/", "/finance", "/maps/reserve/partners", "/maps/reserve",
          "/searchhistory/", "/alerts/$", "/alerts/remove", "/alerts/manage",
-         "/accounts/o8/id", "/s2/static", ...],
+         "/accounts/o8/id", "/s2/static"],
         delay: 0,
         disallowed_urls: ["/nonprofits/account/", "/localservices/*", "/local/tab/",
-         "/local/place/rap/", "/local/place/reviews/", ...],
+         "/local/place/rap/", "/local/place/reviews/"],
         name: "google",
         sitemap_urls: []
       }
 
+      iex> user_agent = Roboxir.crawlable("some_random_agent", "https://google.com/")
       iex> user_agent.disallowed_urls
       ["/nonprofits/account/", "/localservices/*", "/local/tab/", "/local/place/rap/",
        "/local/place/reviews/", "/local/place/products/", "/local/dining/",
        "/local/dealership/", "/local/cars/", "/local/cars", "/intl/*/about/views/",
-       "/about/views/", ...]
+       "/about/views/"]
   """
   @spec crawlable(String.t(), String.t()) :: UserAgent.t()
   def crawlable(agent_name, url) do
