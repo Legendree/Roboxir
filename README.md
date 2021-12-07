@@ -31,12 +31,13 @@ true
 Using `crawlable/2` is recommended, with your own logic to itterate over disallowed_urls
 and decide what you can or can't parse. `crawlable?/2` is still being developed.
 
-## TODOs
+# Config
 
-- [x] Module docs
-- [x] Typespecs
-- [x] Tests
-- [ ] Ability to configure via `Config`
+You can skip and not pass the `url` param everytime by adding the config line to your `config.exs`
+
+```elixir
+config :config, url: "https://your_website.com/"
+```
 
 ## Installation
 

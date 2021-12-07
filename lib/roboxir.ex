@@ -15,7 +15,8 @@ defmodule Roboxir do
       true
   """
   @spec crawlable?(String.t(), String.t()) :: boolean()
-  def crawlable?(agent_name, url) do
+  def crawlable?(agent_name, url \\ nil) do
+    url = Application.get_env(:roboxir, :url, url)
     Parser.parse_data(url)
     _crawlable?(agent_name)
   end
@@ -46,7 +47,8 @@ defmodule Roboxir do
        "/about/views/"]
   """
   @spec crawlable(String.t(), String.t()) :: UserAgent.t()
-  def crawlable(agent_name, url) do
+  def crawlable(agent_name, url \\ nil) do
+    url = Application.get_env(:roboxir, :url, url)
     Parser.parse_data(url)
     _crawlable(agent_name)
   end
@@ -76,4 +78,6 @@ defmodule Roboxir do
       delay: user_agent.delay || all_agent.delay || 0
     }
   end
+
+  def test_config, do: Application.get_env(:roboxir, :url, nil)
 end
