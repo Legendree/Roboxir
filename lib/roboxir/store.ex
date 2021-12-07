@@ -74,7 +74,7 @@ defmodule Roboxir.Store do
 
   def handle_cast({:add_sitemap_path_to_agent, agent_name, path}, current_state) do
     agent = Map.get(current_state, agent_name)
-    updated_agent = %{agent | sitemap_urls: [path | agent.allowed_urls]}
+    updated_agent = %{agent | sitemap_urls: [path | agent.sitemap_urls]}
     {:noreply, Map.put(current_state, agent_name, updated_agent)}
   end
 
