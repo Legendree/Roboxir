@@ -36,7 +36,7 @@ and decide what you can or can't parse. `crawlable?/2` is still being developed.
 You can skip and not pass the `url` param everytime by adding the config line to your `config.exs`
 
 ```elixir
-config :config, url: "https://your_website.com/"
+config :roboxir, url: "https://your_website.com/"
 ```
 
 ## Installation
