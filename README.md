@@ -1,7 +1,7 @@
 # Roboxir
 
-Roboxir is a straightforward Robots.txt parser that lets you know if the crawler with specified name is legable to crawl a website.
-This parser has two functions, `crawlable/2` and `crawlable?/2` and 0 third party dependencies.
+0 dependencies, straightforward Robots.txt parser. Plug, parse, and do whatever needed with the result in a convinient `UserAgent` struct.
+This parser has two functions, `crawlable/2` and `crawlable?/2`.
 
 ## Usage
 
