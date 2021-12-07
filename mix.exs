@@ -4,14 +4,18 @@ defmodule Roboxir.MixProject do
   def project do
     [
       app: :roboxir,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       name: "Roboxir",
       source_url: "https://github.com/Legendree/Roboxir",
       description: description(),
-      package: package()
+      package: package(),
+      docs: [
+        main: Roboxir,
+        extras: ["README.md"]
+      ]
     ]
   end
 
@@ -25,7 +29,7 @@ defmodule Roboxir.MixProject do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    []
+    [{:ex_doc, ">= 0.0.0", only: :dev, runtime: false}]
   end
 
   defp description() do
