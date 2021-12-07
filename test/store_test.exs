@@ -14,18 +14,12 @@ defmodule StoreTest do
     assert agent_from_store.name == agent.name
   end
 
-  test "add_delay/2 adds delay to agent in store" do
+  test "add_delay/2 adds delay to agent in store", %{agent: agent} do
     delay = :math.floor(:rand.uniform() * 10 + 1)
-    agent = %UserAgent{name: "test_agent"}
-    Roboxir.Store.add_agent(agent)
-    agents = Roboxir.Store.get()
-    agent_from_store = Map.get(agents, agent.name)
-    assert agent_from_store.delay == nil
-    Roboxir.Store.add_delay(agent_from_store.name, delay)
-    agents = Roboxir.Store.get()
-    agent_from_store = Map.get(agents, agent.name)
-
-    assert agent_from_store.delay == delay
+    assert agent.delay == nil
+    Roboxir.Store.add_delay(agent.name, delay)
+    {:ok, agent} = Roboxir.Store.get_agent(agent.name)
+    assert agent.delay == delay
   end
 
   test "add_disallowed_path/2" do
