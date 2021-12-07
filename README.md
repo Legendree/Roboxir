@@ -35,7 +35,7 @@ and decide what you can or can't parse. `crawlable?/2` is still being developed.
 
 - [x] Module docs
 - [x] Typespecs
-- [ ] Tests
+- [x] Tests
 - [ ] Ability to configure via `Config`
 
 ## Installation
