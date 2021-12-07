@@ -23,8 +23,11 @@ defmodule StoreTest do
   end
 
   test "get_agent/1 returns a specfic agent", %{agent: agent} do
-    {:ok, agent_from_store} = Roboxir.Store.get_agent(agent.name)
-    assert agent_from_store == agent
+    assert {:ok, _agent_from_store} = Roboxir.Store.get_agent(agent.name)
+  end
+
+  test "get_agent/1 returns :error tuple when non-existing agent requested" do
+    assert {:error, _} = Roboxir.Store.get_agent("some_random_agent_name")
   end
 
   test "add_agent/1 adds new agent to the store", %{agent: agent} do
