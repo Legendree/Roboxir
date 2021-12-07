@@ -9,6 +9,24 @@ defmodule StoreTest do
     {:ok, %{agent: agent}}
   end
 
+  test "flush/0 flushes the store" do
+    store = Roboxir.Store.get()
+    assert length(Map.keys(store)) > 0
+    Roboxir.Store.flush()
+    store = Roboxir.Store.get()
+    assert length(Map.keys(store)) === 0
+  end
+
+  test "get/0 returns the store" do
+    store = Roboxir.Store.get()
+    assert length(Map.keys(store)) > 0
+  end
+
+  test "get_agent/1 returns a specfic agent", %{agent: agent} do
+    {:ok, agent_from_store} = Roboxir.Store.get_agent(agent.name)
+    assert agent_from_store == agent
+  end
+
   test "add_agent/1 adds new agent to the store", %{agent: agent} do
     {:ok, agent_from_store} = Roboxir.Store.get_agent(agent.name)
     assert agent_from_store.name == agent.name
