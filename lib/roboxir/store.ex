@@ -3,6 +3,8 @@ defmodule Roboxir.Store do
 
   @process __MODULE__
 
+  alias Roboxir.UserAgent
+
   def start_link(initial_state) do
     GenServer.start_link(@process, initial_state, name: @process)
   end
@@ -31,12 +33,21 @@ defmodule Roboxir.Store do
 
   def get(), do: GenServer.call(@process, :get)
 
+  def get_agent(agent_name), do: GenServer.call(@process, {:get_agent, agent_name})
+
   def init(initial_state) do
     {:ok, initial_state}
   end
 
   def handle_call(:get, _from, current_state) do
     {:reply, current_state, current_state}
+  end
+
+  def handle_call({:get_agent, agent_name}, _from, current_state) do
+    case Map.get(current_state, agent_name) do
+      %UserAgent{} = agent -> {:reply, {:ok, agent}, current_state}
+      _ -> {:reply, {:error, nil}, current_state}
+    end
   end
 
   def handle_cast({:add_agent, agent}, current_state) do
