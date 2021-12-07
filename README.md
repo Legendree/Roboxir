@@ -12,10 +12,10 @@ iex> Roboxir.crawlable("some_random_agent", "https://google.com/")
 %Roboxir.UserAgent{
   allowed_urls: ["/js/", "/finance", "/maps/reserve/partners", "/maps/reserve",
    "/searchhistory/", "/alerts/$", "/alerts/remove", "/alerts/manage",
-   "/accounts/o8/id", "/s2/static", ...],
+   "/accounts/o8/id", "/s2/static", ..],
   delay: 0,
   disallowed_urls: ["/nonprofits/account/", "/localservices/*", "/local/tab/",
-   "/local/place/rap/", "/local/place/reviews/", ...],
+   "/local/place/rap/", "/local/place/reviews/", ..],
   name: "google",
   sitemap_urls: []
 }

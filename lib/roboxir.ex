@@ -34,7 +34,7 @@ defmodule Roboxir do
          "/accounts/o8/id", "/s2/static"],
         delay: 0,
         disallowed_urls: ["/nonprofits/account/", "/localservices/*", "/local/tab/",
-         "/local/place/rap/", "/local/place/reviews/"],
+         "/local/place/rap/", "/local/place/reviews/", ..],
         name: "google",
         sitemap_urls: []
       }
@@ -44,7 +44,7 @@ defmodule Roboxir do
       ["/nonprofits/account/", "/localservices/*", "/local/tab/", "/local/place/rap/",
        "/local/place/reviews/", "/local/place/products/", "/local/dining/",
        "/local/dealership/", "/local/cars/", "/local/cars", "/intl/*/about/views/",
-       "/about/views/"]
+       "/about/views/", ..]
   """
   @spec crawlable(String.t(), String.t()) :: UserAgent.t()
   def crawlable(agent_name, url \\ nil) do
