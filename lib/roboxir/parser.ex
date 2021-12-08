@@ -9,18 +9,8 @@ defmodule Roboxir.Parser do
 
     {:ok, active_agent} = Agent.start_link(fn -> nil end)
     :global.register_name(:current_agent, active_agent)
-    IO.iodata_to_binary(body) |> String.split("\n") |> Enum.each(&match_line/1)
+    IO.iodata_to_binary(body) |> String.split("\n") |> Enum.map(&String.downcase/1) |> Enum.each(&match_line/1)
     :ok
-  end
-
-  defp match_line("User-Agent: " <> name) do
-    set_agent(name)
-    Store.add_agent(%UserAgent{name: name})
-  end
-
-  defp match_line("User-agent: " <> name) do
-    set_agent(name)
-    Store.add_agent(%UserAgent{name: name})
   end
 
   defp match_line("user-agent: " <> name) do
@@ -28,23 +18,23 @@ defmodule Roboxir.Parser do
     Store.add_agent(%UserAgent{name: name})
   end
 
-  defp match_line("Crawl-delay: " <> delay) do
+  defp match_line("crawl-delay: " <> delay) do
     delay = delay |> String.to_integer()
     current_agent = current_agent()
     Store.add_delay(current_agent, delay)
   end
 
-  defp match_line("Disallow: " <> path) do
+  defp match_line("disallow: " <> path) do
     current_agent = current_agent()
     Store.add_disallowed_path(current_agent, path)
   end
 
-  defp match_line("Allow: " <> path) do
+  defp match_line("allow: " <> path) do
     current_agent = current_agent()
     Store.add_allowed_path(current_agent, path)
   end
 
-  defp match_line("Sitemap: " <> path) do
+  defp match_line("sitemap: " <> path) do
     current_agent = current_agent()
     Store.add_sitemap_path(current_agent, path)
   end
