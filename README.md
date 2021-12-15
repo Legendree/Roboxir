@@ -28,10 +28,12 @@ iex> Roboxir.crawlable?("other_randome_agent", "https://google.com/")
 true
 ```
 
-Using `crawlable/2` is recommended, with your own logic to itterate over disallowed_urls
-and decide what you can or can't parse. `crawlable?/2` is still being developed.
+## ⚠️ Warning
 
-# Config
+Using `crawlable/2` is recommended, with your own logic to itterate over disallowed_urls
+and decide what you can or can't parse. `crawlable?/2` is still being **developed**.
+
+## Config
 
 You can skip and not pass the `url` param everytime by adding the config line to your `config.exs`
 
@@ -41,13 +43,13 @@ config :roboxir, url: "https://your_website.com/"
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
+The package can be installed
 by adding `roboxir` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:roboxir, "~> 0.1.0"}
+    {:roboxir, "~> 0.1.1"}
   ]
 end
 ```
